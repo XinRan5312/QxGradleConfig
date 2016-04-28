@@ -1,6 +1,6 @@
 # QxGradleConfig
 借助简书上的一篇文章  总结了下  Android的gradle配置  需要待续
-
+http://www.jianshu.com/p/9b50c4059d61
 一、构建变体
 1. BuildType
 1.1默认buildType
