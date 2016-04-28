@@ -168,5 +168,31 @@ dependencies {
         flavor1Compile project(path: ':lib1', configuration: 'flavor1Release')
         flavor2Compile project(path: ':lib1', configuration: 'flavor2Release')
     */
+//    上传aar到Maven仓库
+//
+//    在工程的build.gradle中添加如下脚本：
 
 }
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = GROUP_ID
+            pom.artifactId = ARTIFACT_ID
+            pom.version = VERSION
+            repository(url: RELEASE_REPOSITORY_URL) {
+                authentication(userName: USERNAME, password: PASSWORD)
+            }
+        }
+    }
+}
+
+//在build.gradle同目录下添加gradle.properties文件，配置如下：
+//
+//GROUP_ID=dianping.android.nova.thirdparty
+//ARTIFACT_ID=zxing
+//VERSION=1.0
+//RELEASE_REPOSITORY_URL=http://mvn.dp.com/nova
+//USERNAME=hello
+//PASSWORD=hello
+//gradle.properties的属性会被build.gradle读取用来上传aar，最后执行./gradlew :Zxing:uploadArchives即可。
